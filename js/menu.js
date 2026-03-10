@@ -1,17 +1,23 @@
-(function(){
-    const openButton = document.querySelector('.nav__menu');
-    const menu = document.querySelector('.nav__link');
-    const closeMenu = document.querySelector('.nav__close');
+(function () {
+    document.addEventListener('click', (e) => {
+        const openBtn = e.target.closest('.nav__menu');
+        const closeBtn = e.target.closest('.nav__close');
+        const linkBtn = e.target.closest('.nav__links');
 
-    openButton.addEventListener('click', ()=>{
-        menu.classList.add('nav__link--show');
+        if (openBtn) {
+            const nav = openBtn.closest('.nav');
+            const menu = nav ? nav.querySelector('.nav__link') : null;
+            if (menu) menu.classList.add('nav__link--show');
+        }
+
+        if (closeBtn) {
+            const menu = closeBtn.closest('.nav__link');
+            if (menu) menu.classList.remove('nav__link--show');
+        }
+
+        if (linkBtn) {
+            const menu = linkBtn.closest('.nav__link');
+            if (menu) menu.classList.remove('nav__link--show');
+        }
     });
-
-    closeMenu.addEventListener('click', ()=>{
-        menu.classList.remove('nav__link--show');
-    });
-
-    
-
-
 })();
